@@ -1,0 +1,41 @@
+lines.py
+
+import sys  # Checking if an argument is provided before accessing it
+
+def main():
+    if len(sys.argv) == 1: 
+        sys.exit("Too few command-line arguments") 
+
+    if len(sys.argv) > 2:
+        sys.exit("Too many command-line arguments")  
+
+    if len(sys.argv) == 2: 
+        file_string = sys.argv[1] 
+
+        if file_string.endswith(".py"): 
+            pass 
+        else: 
+            sys.exit("Not a Python file") 
+
+        try:  # check if file_string is python file 
+            file = open(file_string)  # if it is not a file run error 
+        except FileNotFoundError:  # print to the terminal that it is not a file 
+            sys.exit("File does not exist") 
+
+        contents = file.readlines() 
+        file.close()
+        count = 0
+        for line in contents:
+            stripped = line.strip()
+            if stripped.startswith("#"):
+                pass
+            elif stripped == "":
+                pass
+            else:
+                count += 1
+        print(count)
+        
+
+if __name__ == "__main__":
+   
+    main()
